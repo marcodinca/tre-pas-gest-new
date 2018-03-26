@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Timer
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-row>
+        <ion-col col-2>
+            <button ion-button block large (click)="startTimer()">Start</button>
+        </ion-col>
+        <ion-col col-2>
+            <button ion-button block large (click)="stopTimer()">Stop</button>
+        </ion-col>
+        <ion-col col-6>
+            <ion-item>
+                <ion-label color="primary" stacked>Pettorale corridore</ion-label>
+                <ion-input [(ngModel)]="pettorale" type="number" placeholder="N. Pettorale" (keyup)="onKey($event, pettorale)"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col>
+            <p>{{elapsedHours}}:{{elapsedMinutes}}:{{elapsedSeconds}}</p>
+        </ion-col>
+    </ion-row>    
+    <hr *ngIf="risultati.length > 0">
+    <ion-row *ngIf="risultati.length > 0">
+        <ion-col col-1>
+            Pettorale
+        </ion-col>
+        <ion-col>
+            Tempo
+        </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of risultati">
+        <ion-col col-1>
+            {{item.pettorale}}
+        </ion-col>
+        <ion-col>
+            {{item.ore}}:{{item.minuti}}:{{item.secondi}}
+        </ion-col>
+    </ion-row>
+</ion-content>
