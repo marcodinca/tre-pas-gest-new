@@ -23,7 +23,7 @@ export class TimerPage {
     this.risultati = [];
 
     let savedStartTime = localStorage.getItem('timerStartTime');
-    if(savedStartTime !== undefined) {
+    if(savedStartTime) {
         this.startTime = new Date(savedStartTime);
         this.timerLoop();
     }
@@ -32,7 +32,7 @@ export class TimerPage {
   startTimer() {
     this.startTime = new Date();
     this.timerLoop();
-    localStorage.setItem('timerStartTime', this.startTime.toUTCString());
+    localStorage.setItem('timerStartTime', this.startTime.toISOString());
   }
 
   timerLoop() {
@@ -43,12 +43,12 @@ export class TimerPage {
         this.elapsedMinutes = Math.floor(elapsed/60);
         this.elapsedSeconds = Math.floor(elapsed%60);
         this.timerLoop();
-    }, 1000);
+    }, 500); //ms, indica ogni quanto refreshare il timer.
   }
 
   stopTimer() {
     clearTimeout(this.timerLoopTimeout);
-    localStorage.setItem('timerStartTime', undefined);
+    localStorage.clear();
     this.elapsedHours = 0;
     this.elapsedMinutes = 0;
     this.elapsedSeconds = 0;
@@ -57,7 +57,7 @@ export class TimerPage {
   onKey(event: KeyboardEvent, pettorale:number) { 
     if(event.keyCode === 13) { //Se l'evento è un invio
         this.pettorale = '';
-        this.risultati.push({
+        this.risultati.unshift({
             pettorale: pettorale,
             ore: this.elapsedHours,
             minuti: this.elapsedMinutes,
