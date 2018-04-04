@@ -69,6 +69,8 @@ export class TimerPage {
             secondi: this.elapsedSeconds,
             millisecondi: this.elapsedMillis
         })
+
+        //Aggiunta a database e refresh classifica
     }
   }
 }

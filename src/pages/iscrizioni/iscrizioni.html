@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+        Iscrizioni
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+  
+<ion-content padding>
+    <ion-row>
+        <ion-col>
+            <h2>Iscrizioni per la 
+                <span class="toggleSpan" *ngIf="is4km" (click)="toggleRace()">4 km</span>
+                <span class="toggleSpan" *ngIf="is9km" (click)="toggleRace()">9 km</span>
+            </h2>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col> <!-- form iscrizione -->
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label color="primary" stacked>Nome</ion-label>
+                        <ion-input type="text" [(ngModel)]="nome"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label color="primary" stacked>Cognome</ion-label>
+                        <ion-input type="text" [(ngModel)]="cognome"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label color="primary" stacked>Data Nascita</ion-label>
+                        <ion-input type="date" [(ngModel)]="dataNascita"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-col>
+        <ion-col>
+            <!-- Lista degli iscritti -->
+        </ion-col>
+    </ion-row>
+</ion-content>
