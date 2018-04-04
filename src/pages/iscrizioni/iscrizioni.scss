@@ -2,6 +2,11 @@
     border-bottom: solid 2px blue;
 }
 
+.toggleSpanDisabled {
+    color: gray;
+    border-bottom: none;
+}
+
 .toggleSpan:hover {
     border-bottom: solid 3px blue;
     cursor: pointer;

@@ -8,10 +8,17 @@
   
 <ion-content padding>
     <ion-row>
-        <ion-col>
-            <h2>Iscrizioni per la 
-                <span class="toggleSpan" *ngIf="is4km" (click)="toggleRace()">4 km</span>
-                <span class="toggleSpan" *ngIf="is9km" (click)="toggleRace()">9 km</span>
+        <ion-col col-2>
+            <h2>Iscrizioni per la</h2>
+        </ion-col>
+        <ion-col col-1>
+            <h2>
+                <span class="toggleSpan" [ngClass]="is9km?'toggleSpanDisabled':''" (click)="toggleRace()">4 km</span>
+            </h2>
+        </ion-col>
+        <ion-col col-1>
+            <h2>
+                <span class="toggleSpan" [ngClass]="is4km?'toggleSpanDisabled':''" (click)="toggleRace()">9 km</span>
             </h2>
         </ion-col>
     </ion-row>
@@ -30,6 +37,21 @@
                         <ion-input type="text" [(ngModel)]="cognome"></ion-input>
                     </ion-item>
                 </ion-col>
+                <ion-col>
+                    <ion-list radio-group [(ngModel)]="sesso">
+                        <ion-item>
+                            <ion-label>M</ion-label>
+                            <ion-radio value="M" checked></ion-radio>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>F</ion-label>
+                            <ion-radio value="F"></ion-radio>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                
             </ion-row>
             <ion-row>
                 <ion-col>
@@ -38,9 +60,48 @@
                         <ion-input type="date" [(ngModel)]="dataNascita"></ion-input>
                     </ion-item>
                 </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label color="primary" stacked>Pettorale</ion-label>
+                        <ion-input type="number" [(ngModel)]="pettorale"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label>Cert. medico</ion-label>
+                        <ion-checkbox [(ngModel)]="certificato"></ion-checkbox>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label color="primary" stacked>Gruppo Sportivo</ion-label>
+                        <ion-input type="text" [(ngModel)]="gruppo"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label>ABVS</ion-label>
+                        <ion-checkbox [(ngModel)]="donatore"></ion-checkbox>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label color="primary" stacked>Sezione</ion-label>
+                        <ion-input type="text" [(ngModel)]="sezione" [disabled]="!donatore"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <button ion-button block large>Conferma</button>    
+                </ion-col>
             </ion-row>
         </ion-col>
-        <ion-col>
+        <ion-col style="border-left: 1px solid black">
             <!-- Lista degli iscritti -->
         </ion-col>
     </ion-row>

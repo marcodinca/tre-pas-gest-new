@@ -14,14 +14,14 @@
         <ion-col col-2>
             <button ion-button block large (click)="stopTimer()">Stop</button>
         </ion-col>
-        <ion-col col-6>
+        <ion-col col-3>
             <ion-item>
                 <ion-label color="primary" stacked>Pettorale corridore</ion-label>
-                <ion-input [(ngModel)]="pettorale" type="number" placeholder="N. Pettorale"></ion-input>
+                <ion-input [(ngModel)]="pettorale" type="number" placeholder="N. Pettorale" (keyup)="onKey($event, pettorale)"></ion-input>
             </ion-item>
         </ion-col>
         <ion-col>
-            <p>{{elapsedHours}}:{{elapsedMinutes}}:{{elapsedSeconds}}.{{elapsedMillis}}</p>
+            <p style="font-size: 30px">{{elapsedHours}}:{{elapsedMinutes}}:{{elapsedSeconds}}.{{elapsedMillis}}</p>
         </ion-col>
     </ion-row>    
     <hr *ngIf="risultati.length > 0">
