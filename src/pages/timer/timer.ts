@@ -9,6 +9,7 @@ import { isNumber } from 'ionic-angular/util/util';
 export class TimerPage {
   timerLoopTimeout;
   startTime: Date;
+  elapsedMillis: number;
   elapsedSeconds: number;
   elapsedMinutes: number;
   elapsedHours: number;
@@ -20,6 +21,7 @@ export class TimerPage {
     this.elapsedSeconds = 0;
     this.elapsedHours = 0;
     this.elapsedMinutes = 0;
+    this.elapsedMillis = 0;
     this.risultati = [];
 
     let savedStartTime = localStorage.getItem('timerStartTime');
@@ -38,12 +40,14 @@ export class TimerPage {
   timerLoop() {
     this.timerLoopTimeout = setTimeout(() => {
         let stepTime = new Date();
-        let elapsed = Math.floor((stepTime.getTime() - this.startTime.getTime())/1000);
-        this.elapsedHours = Math.floor(elapsed/3600);
-        this.elapsedMinutes = Math.floor(elapsed/60);
-        this.elapsedSeconds = Math.floor(elapsed%60);
+        let elapsed = Math.floor((stepTime.getTime() - this.startTime.getTime()));
+
+        this.elapsedHours = Math.floor(elapsed/3600000);
+        this.elapsedMinutes = Math.floor(elapsed/60000)%60;
+        this.elapsedSeconds = Math.floor(elapsed/1000)%60;
+        this.elapsedMillis = Math.floor(elapsed%1000);
         this.timerLoop();
-    }, 500); //ms, indica ogni quanto refreshare il timer.
+    }, 10); //ms, indica ogni quanto refreshare il timer.
   }
 
   stopTimer() {
@@ -52,6 +56,7 @@ export class TimerPage {
     this.elapsedHours = 0;
     this.elapsedMinutes = 0;
     this.elapsedSeconds = 0;
+    this.elapsedMillis = 0;
   }
 
   onKey(event: KeyboardEvent, pettorale:number) { 
@@ -61,7 +66,8 @@ export class TimerPage {
             pettorale: pettorale,
             ore: this.elapsedHours,
             minuti: this.elapsedMinutes,
-            secondi: this.elapsedSeconds
+            secondi: this.elapsedSeconds,
+            millisecondi: this.elapsedMillis
         })
     }
   }

@@ -21,7 +21,7 @@
             </ion-item>
         </ion-col>
         <ion-col>
-            <p>{{elapsedHours}}:{{elapsedMinutes}}:{{elapsedSeconds}}</p>
+            <p>{{elapsedHours}}:{{elapsedMinutes}}:{{elapsedSeconds}}.{{elapsedMillis}}</p>
         </ion-col>
     </ion-row>    
     <hr *ngIf="risultati.length > 0">
@@ -38,7 +38,7 @@
             {{item.pettorale}}
         </ion-col>
         <ion-col>
-            {{item.ore}}:{{item.minuti}}:{{item.secondi}}
+            {{item.ore}}:{{item.minuti}}:{{item.secondi}}.{{item.millisecondi}}
         </ion-col>
     </ion-row>
 </ion-content>
